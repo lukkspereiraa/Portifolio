@@ -17,7 +17,7 @@ export const NavItem = ({label, href}: NaveItemProps) =>{
 
     return(
         <Link className={cn(
-            "text-gray-400 flex items-center font-mono font-medium",
+            "text-gray-400 flex items-center gap-2 font-mono font-medium",
             isActive && 'text-gray-50'
         )} href={href}>
             <samp className="text-emerald-400" >#</samp>
