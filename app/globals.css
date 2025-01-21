@@ -11,6 +11,14 @@
 .container {
   @apply mx-auto w-full max-w-[1200px] px-6
 }
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-plex-mono: 'IBM Plex Mono', monospace;
+}
+
+body {
+  font-family: var(--font-inter), sans-serif;
+}
 
 *::-webkit-scrollbar {
   width: 8px;
