@@ -27,7 +27,7 @@ const ProjectsCard = () => {
                 <TechBadge name="Next.js" />
             </div>
             <Link href=''>
-                Ver projetos 
+                Ver projeto 
                 <HiArrowNarrowRight/>
             </Link>
         </div>
