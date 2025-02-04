@@ -4,9 +4,9 @@ import { HiArrowNarrowRight } from "react-icons/hi";
 import SectionTitule from "../section-titele";
 import Button from "../button";
 import {useForm} from "react-hook-form"
-import { TypeOf, typecast, z } from "zod";
+import { z } from "zod";
 import {zodResolver} from "@hookform/resolvers/zod"
-import { type } from "os";
+
 
 const contatcFormSchema = z.object({
     name: z.string().min(3).max(100),
@@ -26,7 +26,7 @@ const ContatcForm = () => {
     }
     
 
-    return <section className="py-16 px-6 md:py-32 flex items-center justify-center bg-gray-950">
+    return <section id="contact" className="py-16 px-6 md:py-32 flex items-center justify-center bg-gray-950">
         <div className="w-full max-w-[420px] mx-auto">
             <SectionTitule
                 subTitulo="contato"
