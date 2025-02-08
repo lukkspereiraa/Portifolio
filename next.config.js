@@ -4,8 +4,8 @@ const nextConfig = {
     appDir: true,
   },
   images: {
-    domains: ['media.graphassets.com'],
+    domains: ["us-west-2.graphassets.com"], // Adiciona o domínio permitido
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
