@@ -1,19 +1,16 @@
+import { CmsIcon } from "@/app/components/cms-icon"
+import { knownTech as IKnownTech } from "@/app/types/projects"
 import { getRelativeTimeString } from "@/app/utils/get-relative-time"
-import { ReactNode } from "react"
+
 
 type KanwnTechTypeProps = {
-    tech: {
-        icon: ReactNode,
-        name: string,
-        starData: string,
-        shadowDate: boolean
-
-    }
+    tech: IKnownTech
 }
 
 const KanwnTech = ({ tech }: KanwnTechTypeProps) => {
-    const relativeTime = getRelativeTimeString(new Date(tech.starData),
+    const relativeTime = getRelativeTimeString(new Date(tech.startDate),
         'pt-BR').replace('há', '')
+
     return <div className="p-6 rounded-lg 
     bg-gray-600/20 text-gray-500 
     flex flex-col gap-2
@@ -23,10 +20,10 @@ const KanwnTech = ({ tech }: KanwnTechTypeProps) => {
             <p className="font-medium">
                 {tech.name}
             </p>
-            {tech.icon}
+            {<CmsIcon icon={tech.iconSvg} />}
         </div>
         <span>
-            {tech.shadowDate ? relativeTime : ''}
+            {relativeTime} de experiênce
         </span>
     </div>
 }

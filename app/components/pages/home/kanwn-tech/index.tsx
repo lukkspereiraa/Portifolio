@@ -1,20 +1,20 @@
 import SetionTitule from "@/app/components/section-titele"
 import KanwnTech from "./kanown-tech"
-import { TbBrandNextjs } from "react-icons/tb"
+import { knownTech as IKnownTech} from "@/app/types/projects"
 
+type KanownTechProps ={
+    techs: IKnownTech []
+}
 
-const KanownTech = () => {
+const KanownTech = ({techs}: KanownTechProps) => {
     return <section className="container py-16" >
         <SetionTitule subTitulo="competências" titule="Conhecimentos" />
         <div className="grid grid-cols-[repeat(auto-fit,minmax(264px,1fr))] gap-3 mt-[64px]">
-            {Array.from({ length: 8 }).map((index => (
-                <KanwnTech tech={{
-                    icon: <TbBrandNextjs />,
-                    name: 'Next.js',
-                    shadowDate: true,
-                    starData: "2024-06-01"
-                }} />
-            )))}
+            {
+                techs?.map((tech) => (
+                    <KanwnTech key={tech.name} tech={tech} />
+                ))
+            }
         </div>
     </section>
 

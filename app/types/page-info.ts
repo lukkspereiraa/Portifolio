@@ -1,4 +1,4 @@
-import { knownTech } from "./projects";
+import { Project, knownTech } from "./projects";
 import type { RichTextContent } from "@graphcms/rich-text-types";
 
 export type Social = {
@@ -18,6 +18,7 @@ export type HomePageInfo = {
         technology:knownTech[]
 
         knownTechs:knownTech[]
+        project: Project[]
 
 }
 
