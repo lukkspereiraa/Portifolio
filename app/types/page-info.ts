@@ -3,27 +3,26 @@ import type { RichTextContent } from "@graphcms/rich-text-types";
 import { WorkExperience } from "./workeExperince";
 
 export type Social = {
-    url: string
-    iconSvg: string
-}
+  url: string;
+  iconSvg: string;
+};
 
 export type HomePageInfo = {
-        introduction: {
-            raw: RichTextContent
-        }
-        profilePickter: {
-            url: string
-        }
-        social: Social[]
+  introduction: {
+    raw: RichTextContent;
+  };
+  profilePickter: {
+    url: string;
+  };
+  social: Social[];
 
-        technology:knownTech[]
+  technology: knownTech[];
 
-        knownTechs:knownTech[]
-        project: Project[]
-
-}
+  knownTechs: knownTech[];
+  project: Project[];
+};
 
 export type HomePageData = {
-    page: HomePageInfo,
-    workExperience: WorkExperience[]
-}
+  page: HomePageInfo;
+  workExperiences: WorkExperience[];
+};
