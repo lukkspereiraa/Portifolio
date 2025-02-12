@@ -22,6 +22,10 @@ export type HomePageInfo = {
   project: Project[];
 };
 
+export type ProjectPageData = {
+  projects: Project[];
+};
+
 export type HomePageData = {
   page: HomePageInfo;
   workExperiences: WorkExperience[];
