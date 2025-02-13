@@ -1,9 +1,9 @@
 import PageIntro from "../components/pages/projects/page-intro";
 import ProjectList from "../components/pages/projects/project-list";
-import { ProjectPageData } from "../types/page-info";
+import { ProjectsPageData } from "../types/page-info";
 import { fetchHygraphQuery } from "../utils/fetch-hygrap-query";
 
-const getPageData = async (): Promise<ProjectPageData> => { 
+const getPageData = async (): Promise<ProjectsPageData> => { 
    
    const query = `
         query ProjectQury {

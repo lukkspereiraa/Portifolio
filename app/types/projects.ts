@@ -24,10 +24,10 @@ export type Project = {
     pageThumbnail: {
         url: string
     }
-    sections: ProjectSection[]
-    description: {
+    section: ProjectSection[]
+    descripion: {
         raw:  RichTextContent
     }
     liveProjectUrl?: string
-    githubUrl?: string
+    gitUrl?: string
 }
