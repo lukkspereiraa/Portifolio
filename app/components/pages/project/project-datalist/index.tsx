@@ -24,7 +24,7 @@ const ProjectDatalist = ({ project }: ProjectDatalistProps) => {
                 calssName="text-center items-center sm:[&>h3]:text-4xl"
             />
             <div className="text-gray-400 text-center max-w-[640px] my-4 sm:my-6 text-sm sm:text-base">
-                <RichText  content={project.descripion.raw} />
+                <RichText content={project.descripion.raw} />
             </div>
             <div className="w-full max-w-[330px] flex flex-wrap gap-2 items-center justify-center">
                 {project.technology.map((tech, i) => (
@@ -35,14 +35,14 @@ const ProjectDatalist = ({ project }: ProjectDatalistProps) => {
                 ))}
             </div>
             <div className="my-6 sm:my-12 flex items-center gap-2 sm:gap-4 flex-col sm:flex-row">
-               {project?.gitUrl &&(<a href={project.gitUrl} target="_blank">
+                {project?.gitUrl && (<a href={project.gitUrl} target="_blank">
                     <Button className="min-w-[180px]">
                         <TbBrandGithub size={20} />
                         REPOSITORIO
                     </Button>
                 </a>)}
 
-               {project?.liveProjectUrl && ( <a href={project.liveProjectUrl} target="_blank">
+                {project?.liveProjectUrl && (<a href={project.liveProjectUrl} target="_blank">
                     <Button className="min-w-[180px]">
                         <FiGlobe size={20} />
                         PROJETO ONLINE

@@ -31,7 +31,7 @@ export default async function Projects(){
     return(
         <>
             <PageIntro />
-            <ProjectList projects={projects} />
+            <ProjectList project={projects} />
         </>
     )
 }

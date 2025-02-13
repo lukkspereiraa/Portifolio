@@ -1,18 +1,16 @@
 import ProjectDatalist from "@/app/components/pages/project/project-datalist";
 import ProjectSection from "@/app/components/pages/project/project-datalist/project-section";
 import { fetchHygraphQuery } from "@/app/utils/fetch-hygrap-query";
-import { Project } from "@/app/types/projects";
+import { ProjectPageInfo, ProjectsPageStaticData } from "@/app/types/page-info";
 
 
 type ProjectProps = {
     params: {
-        slug: string,
-       
-    },
-    project: Project
-}
+      slug: string
+    }
+  }
 
-const getProjectDetalis = async (slug: string): Promise<ProjectProps> => {
+const getProjectDetalis = async (slug: string): Promise<ProjectPageInfo> => {
 
     const query = `
          query ProjectQury {
@@ -50,12 +48,23 @@ const getProjectDetalis = async (slug: string): Promise<ProjectProps> => {
 }
 
 export default async function Project({ params: { slug } }: ProjectProps) {
+    const { project } = await getProjectDetalis(slug)
 
-    const { project } = await getProjectDetalis(slug);
-    
     return (<>
         <ProjectDatalist project={project} />
-        <ProjectSection  sections={project.section} />
+        <ProjectSection sections={project.section} />
     </>);
 }
 
+export async function generateStaticParams() {
+    const query = `
+        query ProjectSlugs{
+            projects(first:100){
+                slug
+            }
+        }
+    `
+    const { projects } = await fetchHygraphQuery<ProjectsPageStaticData>(query)
+
+    return projects
+}

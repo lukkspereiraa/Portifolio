@@ -26,6 +26,12 @@ export type ProjectsPageData = {
   projects: Project[];
 };
 
+export type ProjectsPageStaticData = {
+  projects:{
+    slug: string
+  }[]
+};
+
 export type ProjectPageInfo = {
   project: Project;
 };
