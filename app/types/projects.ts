@@ -26,7 +26,8 @@ export type Project = {
     }
     section: ProjectSection[]
     descripion: {
-        raw:  RichTextContent
+        raw:  RichTextContent,
+        text: string
     }
     liveProjectUrl?: string
     gitUrl?: string
