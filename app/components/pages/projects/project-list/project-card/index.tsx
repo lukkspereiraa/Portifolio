@@ -1,5 +1,4 @@
 import Image from "next/image";
-import imagem from "../../../../../../public/images/projects/imagemProjcts.png"
 import { Project } from "@/app/types/projects";
 
 type ProjectCardProps = {

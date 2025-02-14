@@ -1,4 +1,7 @@
+'use client'
+
 import { cn } from "@/app/lib/utils"
+import { motion } from "framer-motion"
 
 type SectionTituleProps = {
     titule: string,
@@ -11,13 +14,25 @@ const SectionTitule = ({
     subTitulo,
     calssName
 }: SectionTituleProps) => {
+    const animaition = {
+        initial: { opacity: 0, x: -100 },
+        whileInView: { opacity: 1, x: 0 },
+        exit: { opacity: 0, x: -100 },
+    }
+
     return <div className={cn("flex flex-col gap-4", calssName)}>
-        <span className="font-mono text-sm text-emerald-400" >
+        <motion.span className="font-mono text-sm text-emerald-400"
+            {...animaition}
+            transition={{ duration: 0.5 }}
+        >
             {`.../${subTitulo}`}
-        </span>
-        <h3 className="text-3xl font-medium">
+        </motion.span>
+        <motion.h3 className="text-3xl font-medium"
+            {...animaition}
+            transition={{ duration: 0.5, delay: 0.2 }}
+        >
             {titule}
-        </h3>
+        </motion.h3>
     </div>
 }
 

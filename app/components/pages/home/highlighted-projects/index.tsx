@@ -1,3 +1,5 @@
+'use client'
+
 import HorizontalDivider from "@/app/components/divider/horizontal"
 import SectionTitule from "@/app/components/section-titele"
 import ProjectsCard from "./project-card"

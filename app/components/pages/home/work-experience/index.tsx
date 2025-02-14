@@ -1,3 +1,5 @@
+'use client'
+
 import SectionTitule from "@/app/components/section-titele";
 import ExperienceItem from "./experience-item";
 import { WorkExperience } from "@/app/types/workeExperince";

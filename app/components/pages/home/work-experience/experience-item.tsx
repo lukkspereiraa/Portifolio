@@ -1,44 +1,51 @@
+'use client'
+
 import Image from "next/image";
 import { TechBadge } from "@/app/components/techBadge";
 import { WorkExperience } from "@/app/types/workeExperince";
 import { RichText } from "@/app/components/rich-text";
 import { differenceInMonths, differenceInYears, format } from "date-fns";
 import { ptBR } from "date-fns/locale";
+import { motion } from "framer-motion";
 
 type ExperienceItemProps = {
     experience: WorkExperience
 }
 
 const ExperienceItem = ({ experience }: ExperienceItemProps) => {
-    const { 
-        companyLogo, 
-        comanyName, 
-        role, 
- 
-        endDate, 
-        description, 
+    const {
+        companyLogo,
+        comanyName,
+        role,
+
+        endDate,
+        description,
         technology } = experience;
 
-        const startDate = new Date(experience.startDate);
-        const formatDate = format(startDate, "MMM yyyy", { locale: ptBR });
-        const endDateFormated = endDate ? format(new Date(endDate), "MMM yyyy", { locale: ptBR }) : "Atualmente";  
+    const startDate = new Date(experience.startDate);
+    const formatDate = format(startDate, "MMM yyyy", { locale: ptBR });
+    const endDateFormated = endDate ? format(new Date(endDate), "MMM yyyy", { locale: ptBR }) : "Atualmente";
 
-        const end = endDate ? new Date(endDate) : new Date();
-        const month = differenceInMonths(end, startDate);
-        const years = differenceInYears(end, startDate) 
-        const monthsRemainder = month % 12;
+    const end = endDate ? new Date(endDate) : new Date();
+    const month = differenceInMonths(end, startDate);
+    const years = differenceInYears(end, startDate)
+    const monthsRemainder = month % 12;
 
-        const formattedDuration =
+    const formattedDuration =
         years > 0
-          ? `${years} ano${years > 1 ? 's' : ''}${
-              monthsRemainder > 0
+            ? `${years} ano${years > 1 ? 's' : ''}${monthsRemainder > 0
                 ? ` e ${monthsRemainder} mes${monthsRemainder > 1 ? 'es' : ''}`
                 : ''
             }`
-          : `${month} mes${month > 1 ? 'es' : ''}`
+            : `${month} mes${month > 1 ? 'es' : ''}`
 
 
-    return (<div className="grid grid-cols-[40px,1fr] gap-4 md:gap-10">
+    return (<motion.div className="grid grid-cols-[40px,1fr] gap-4 md:gap-10"
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: 50 }}
+        transition={{ duration: 0.5 }}
+    >
         <div className="flex flex-col items-center gap-4">
             <div className="rounded-full border border-gray-500 p-0.5">
                 <Image src={companyLogo.url}
@@ -70,13 +77,18 @@ const ExperienceItem = ({ experience }: ExperienceItemProps) => {
                     Competências
                 </p>
                 <div className="flex gap-x-2 gap-y-3 flex-wrap lg:max-w[3350px] mb-8">
-                    {technology.map((tech) => (
-                        <TechBadge key={`${comanyName}-${tech.name}`} name={tech.name} />
+                    {technology.map((tech, i) => (
+                        <TechBadge key={`${comanyName}-${tech.name}`} name={tech.name}
+                            initial={{ opacity: 0, scale: 0 }}
+                            whileInView={{ opacity: 1, scale: 1 }}
+                            exit={{ opacity: 0, scale: 0 }}
+                            transition={{ duration: 0.3, delay: i * 0.3 }}
+                        />
                     ))}
                 </div>
             </div>
         </div>
-    </div>);
+    </motion.div>);
 }
 
 export default ExperienceItem;
