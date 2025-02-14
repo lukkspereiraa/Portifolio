@@ -6,6 +6,8 @@ import Button from "../button";
 import {useForm} from "react-hook-form"
 import { z } from "zod";
 import {zodResolver} from "@hookform/resolvers/zod"
+import axios from "axios";
+import { toast } from "react-hot-toast";
 
 
 const contatcFormSchema = z.object({
@@ -17,12 +19,23 @@ const contatcFormSchema = z.object({
 type ContatcFormData = z.infer<typeof contatcFormSchema>
 
 const ContatcForm = () => {
-    const {handleSubmit , register} = useForm<ContatcFormData>({
+    const {
+        handleSubmit,
+        register, 
+        reset,
+        formState: {isSubmitted}
+        } = useForm<ContatcFormData>({
         resolver: zodResolver(contatcFormSchema)
     })
 
-    const onSubmit = (data: ContatcFormData) =>{
-        console.log(data)
+    const onSubmit = async (data: ContatcFormData) =>{
+        try{
+            await axios.post('/api/contact', data)
+            toast.success("Mensagem enviada com sucesso!")
+            reset()
+        } catch(error){
+            toast.error("Ocorreu um erro ao enviar a mensagem, tente novamente.")
+        }
     }
     
 
@@ -55,7 +68,7 @@ const ContatcForm = () => {
                     maxLength={500} 
                     {...register('message')}/>
 
-                <Button className="h-max mx-auto mt-6 shadow-button">
+                <Button className="h-max mx-auto mt-6 shadow-button" disabled={isSubmitted}>
                     Enviar mensagem
                     <HiArrowNarrowRight size={18} />
                 </Button>
