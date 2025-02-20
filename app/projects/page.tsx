@@ -7,9 +7,9 @@ export const metadata = {
     title: 'Projetos',
 }
 
-const getPageData = async (): Promise<ProjectsPageData> => { 
-   
-   const query = `
+const getPageData = async (): Promise<ProjectsPageData> => {
+
+    const query = `
         query ProjectQury {
             projects{
                 shotDescriton
@@ -26,13 +26,13 @@ const getPageData = async (): Promise<ProjectsPageData> => {
    `
     return fetchHygraphQuery(
         query,
-        60 * 60 * 24,
+        10,
     )
 }
 
-export default async function Projects(){
-    const {projects} = await getPageData()
-    return(
+export default async function Projects() {
+    const { projects } = await getPageData()
+    return (
         <>
             <PageIntro />
             <ProjectList project={projects} />
