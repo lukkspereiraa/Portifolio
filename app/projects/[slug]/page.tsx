@@ -3,12 +3,13 @@ import ProjectSection from "@/app/components/pages/project/project-datalist/proj
 import { fetchHygraphQuery } from "@/app/utils/fetch-hygrap-query";
 import { ProjectPageInfo, ProjectsPageStaticData } from "@/app/types/page-info";
 import { Metadata } from "next";
+import { notFound } from "next/navigation";
 
 
 type ProjectProps = {
-    params: {
+    params: Promise<{
         slug: string
-    }
+    }>
 }
 
 const getProjectDetalis = async (slug: string): Promise<ProjectPageInfo> => {
@@ -42,16 +43,20 @@ const getProjectDetalis = async (slug: string): Promise<ProjectPageInfo> => {
             }
         }
     `
-    return fetchHygraphQuery(
+    const data = fetchHygraphQuery<ProjectPageInfo>(
         query,
-        100, // 1 day
+        1000 * 60 * 60 * 24, // 1 day
     )
+    return data
 }
 
-export default async function Project({ params: { slug } }: ProjectProps) {
-    const { project } = await getProjectDetalis(slug)
-
+export default async function Project({ params }: ProjectProps) {
+    const { project } = await getProjectDetalis((await params).slug)
+    
+    if (!project?.title) return notFound()
     return (<>
+
+
         <ProjectDatalist project={project} />
         <ProjectSection sections={project.section} />
     </>);
@@ -70,9 +75,9 @@ export async function generateStaticParams() {
     return projects
 }
 
-export async function generateMetadata({ params: { slug } }: ProjectProps): Promise<Metadata> {
+export async function generateMetadata({ params }: ProjectProps): Promise<Metadata> {
 
-    const data = await getProjectDetalis(slug)
+    const data = await getProjectDetalis((await params).slug)
     const project = data.project
 
     return {

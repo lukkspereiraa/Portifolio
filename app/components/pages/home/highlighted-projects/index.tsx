@@ -14,12 +14,12 @@ type ProjectsProps = {
 
 const HighligtedProjects = ({ projects }: ProjectsProps) => {
     return <section className="container py-16">
-        <SectionTitule subTitulo="Destaques" titule="Projetos em destaque" />
+            <SectionTitule subTitulo="Destaques" titule="Projetos em destaque" />
         <HorizontalDivider className='mb-16' />
 
         <div>
             {projects?.map(project => (
-                <div key={project.slug}>
+                    <div key={project.slug}>
                     <ProjectsCard  project={project} />
                     <HorizontalDivider className="my-16" />
                 </div>
